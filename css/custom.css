@@ -79,7 +79,7 @@ input[type="search"]{
 }
 
 .bolita_carrito{
-    display: none;
+    display: block;
     position: absolute;
     top:-3px;
     right: -5px;
@@ -88,6 +88,10 @@ input[type="search"]{
     border-radius: 50%;
     background-color: red;
     z-index: 10;
+}
+
+.bolita_carrito.carrito_vacio{
+    display: none;
 }
 
 .vacio {

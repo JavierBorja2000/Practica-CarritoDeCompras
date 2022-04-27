@@ -72,10 +72,6 @@ function leerDatosCurso(curso) {
 
      // console.log(articulosCarrito)
 
-     if(articulosCarrito.length > 0){
-          $bolitaCarrito.style.display = "block";
-     }
-
      // console.log(articulosCarrito)
      carritoHTML();
 }
@@ -98,7 +94,7 @@ function eliminarCurso(e) {
 // Muestra el curso seleccionado en el Carrito
 function carritoHTML() {
 
-     vaciarCarrito();
+     limpiarCarrito();
 
      articulosCarrito.forEach(curso => {
           const row = document.createElement('tr');
@@ -116,20 +112,34 @@ function carritoHTML() {
           contenedorCarrito.appendChild(row);
      });
 
+     verificarCantidadCarrrito()
      
 
 }
 
-// Elimina los cursos del carrito en el DOM
-function vaciarCarrito() {
-     // forma lenta
-     // contenedorCarrito.innerHTML = '';
+function verificarCantidadCarrrito(){
+     if(articulosCarrito.length>0){
+          $bolitaCarrito.classList.remove("carrito_vacio")
+     }else{
+          $bolitaCarrito.classList.add("carrito_vacio")
+     }
+}
 
-     $bolitaCarrito.style.display = "none";
-     // forma rapida (recomendada)
+//Limpiar todos los elementos del carrito en el DOM
+function limpiarCarrito(){
      while(contenedorCarrito.firstChild) {
           contenedorCarrito.removeChild(contenedorCarrito.firstChild);
-      }
+     }
+} 
+// Elimina los cursos del carrito en el DOM
+function vaciarCarrito() {
+     while(contenedorCarrito.firstChild) {
+          contenedorCarrito.removeChild(contenedorCarrito.firstChild);
+     }
+
+     articulosCarrito = []
+     
+     verificarCantidadCarrrito()
 }
 
 
