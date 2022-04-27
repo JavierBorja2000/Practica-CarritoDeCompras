@@ -3,6 +3,8 @@ const carrito = document.querySelector('#carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito'); 
+
+const $bolitaCarrito = document.querySelector(".bolita_carrito")
 let articulosCarrito = [];
 
 // Listeners
@@ -18,9 +20,17 @@ function cargarEventListeners() {
      // Al Vaciar el carrito
      vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
 
+     document.addEventListener("keyup", (e) => {
+          if(e.target.matches("#input_filtrar")){
+               console.log(e.target)
+               filtrarCursos(e.target, ".card") //Pase el elemento input y el selector del elemento al cual le aplicare el filtrado
+          }
+     })
 }
 
 
+//evento para filtrar las cards segun la entrada en el input
+//$input.addEventListener('keyup', filtrarCursos);
 
 
 // Funciones
@@ -62,7 +72,9 @@ function leerDatosCurso(curso) {
 
      // console.log(articulosCarrito)
 
-     
+     if(articulosCarrito.length > 0){
+          $bolitaCarrito.style.display = "block";
+     }
 
      // console.log(articulosCarrito)
      carritoHTML();
@@ -104,6 +116,8 @@ function carritoHTML() {
           contenedorCarrito.appendChild(row);
      });
 
+     
+
 }
 
 // Elimina los cursos del carrito en el DOM
@@ -111,9 +125,22 @@ function vaciarCarrito() {
      // forma lenta
      // contenedorCarrito.innerHTML = '';
 
-
+     $bolitaCarrito.style.display = "none";
      // forma rapida (recomendada)
      while(contenedorCarrito.firstChild) {
           contenedorCarrito.removeChild(contenedorCarrito.firstChild);
       }
+}
+
+
+//Funcion que filtrara los cursos dependiendo de lo ingresado en el input
+function filtrarCursos(input, card){
+     document.querySelectorAll(card).forEach((cardItem) => {
+          const $title = cardItem.children[1].firstElementChild
+          console.log($title)
+
+          $title.textContent.includes(input.value)
+          ? cardItem.classList.remove("filter")
+          : cardItem.classList.add("filter")
+     })
 }

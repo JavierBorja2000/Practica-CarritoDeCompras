@@ -63,6 +63,33 @@ ul {
     min-height: 400px;
     min-width: 300px;
 }
+
+input[type="search"]{
+    color: #222;
+}
+
+.filter{
+    display: none;
+}
+
+.contenedor_img{
+    position:relative;
+    width: 33px;
+    height: 28px;
+}
+
+.bolita_carrito{
+    display: none;
+    position: absolute;
+    top:-3px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 10;
+}
+
 .vacio {
     padding: 10px;
     background-color: crimson;
