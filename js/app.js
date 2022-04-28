@@ -161,7 +161,6 @@ function vaciarCarrito() {
 function filtrarCursos(input, card){
      document.querySelectorAll(card).forEach((cardItem) => {
           const $title = cardItem.children[1].firstElementChild
-          console.log($title)
 
           $title.textContent.includes(input.value)
           ? cardItem.classList.remove("filter")
