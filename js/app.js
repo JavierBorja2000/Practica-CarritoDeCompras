@@ -22,7 +22,6 @@ function cargarEventListeners() {
 
      document.addEventListener("keyup", (e) => {
           if(e.target.matches("#input_filtrar")){
-               console.log(e.target)
                filtrarCursos(e.target, ".card") //Pase el elemento input y el selector del elemento al cual le aplicare el filtrado
           }
      })
