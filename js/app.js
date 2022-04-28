@@ -42,7 +42,22 @@ function agregarCurso(e) {
           const curso = e.target.parentElement.parentElement;
           // Enviamos el curso seleccionado para tomar sus datos
           leerDatosCurso(curso);
+          mensajeEmergente("El Curso ha sido agregado al carrito", "#1da83f")
      }
+}
+
+//Funcion que muestra una ventana emergente en pantalla por un periodo de tiempo para avisarle al usuario que realizo una accion en la pagina
+function mensajeEmergente(mensaje, color){
+     const elemento = document.createElement("div")
+     elemento.textContent = mensaje
+     elemento.classList.add("ventanaEmergente")
+     elemento.style.background = color
+
+     document.body.appendChild(elemento)
+
+     setTimeout(()=>{
+          document.body.removeChild(elemento)
+     }, 3000)
 }
 
 // Lee los datos del curso
