@@ -11,6 +11,11 @@ let articulosCarrito = [];
 cargarEventListeners();
 
 function cargarEventListeners() {
+     //a la carga del documento traer el array de cursos agregados y igualarlo a nuestro array 
+     document.addEventListener('DOMContentLoaded', e => {
+          articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || []
+          carritoHTML()
+     })
      // Dispara cuando se presiona "Agregar Carrito"
      listaCursos.addEventListener('click', agregarCurso);
 
@@ -125,10 +130,16 @@ function carritoHTML() {
           `;
           contenedorCarrito.appendChild(row);
      });
+     
+     //Sincronizar el local storage
+     sincronizarStorage()
 
      verificarCantidadCarrrito()
-     
+}
 
+//funcion que sincronizara el estado actual de nuestro array de cursos al local Storage
+function sincronizarStorage(){
+     localStorage.setItem('carrito', JSON.stringify(articulosCarrito))
 }
 
 function verificarCantidadCarrrito(){
@@ -152,7 +163,8 @@ function vaciarCarrito() {
      }
 
      articulosCarrito = []
-     
+     //Sincronizar el local storage
+     sincronizarStorage()
      verificarCantidadCarrrito()
 }
 
